@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src", // This fixes the TS5011 error
+    "outDir": "./dist", // This keeps your compiled files organized
+    "target": "ESNext",
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "ignoreDeprecations": "6.0"
+  }
+}

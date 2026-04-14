@@ -1,0 +1,284 @@
+/* ================================================================
+  IMAGINATION ENGINE: MASTER STYLESHEET
+  Theme: Ethereal Purple & Ancient Gold
+  Project: DM Dashboard / Generative RPG Tool
+================================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=IM+Fell+English+SC&family=JetBrains+Mono&family=Inter:wght@300;400;700&display=swap");
+
+/* ---------------------------------------------------------
+   1. ARCANE VARIABLES (Theme Configuration)
+--------------------------------------------------------- */
+:root {
+  --bg-dark: #050505;
+  --panel-bg: #111111;
+  --accent-purple: #a855f7;
+  --accent-purple-glow: rgba(168, 85, 247, 0.4);
+  --accent-gold: #c5a059;
+  --accent-gold-glow: rgba(197, 160, 89, 0.3);
+  --text-main: #e0e0e0;
+  --text-dim: #888888;
+
+  --font-header: "Cinzel", serif;
+  --font-story: "IM+Fell English SC", serif;
+  --font-data: "JetBrains Mono", monospace;
+}
+
+/* ---------------------------------------------------------
+   2. CORE FOUNDATION & ANIMATIONS
+--------------------------------------------------------- */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  font-family: "Inter", sans-serif;
+  margin: 0;
+  overflow-x: hidden;
+  height: 100vh;
+}
+
+@keyframes textGlow {
+  0%,
+  100% {
+    text-shadow: 0 0 10px var(--accent-purple-glow);
+  }
+  50% {
+    text-shadow:
+      0 0 20px var(--accent-purple),
+      0 0 30px #fff;
+  }
+}
+
+@keyframes manaPulse {
+  0% {
+    box-shadow: 0 0 5px var(--accent-purple-glow);
+    border-color: var(--accent-purple);
+  }
+  50% {
+    box-shadow:
+      0 0 20px var(--accent-purple),
+      0 0 10px var(--accent-gold);
+    border-color: var(--accent-gold);
+  }
+  100% {
+    box-shadow: 0 0 5px var(--accent-purple-glow);
+    border-color: var(--accent-purple);
+  }
+}
+
+/* ---------------------------------------------------------
+   3. APP STRUCTURE & HEADER
+--------------------------------------------------------- */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.app-header {
+  display: grid;
+  grid-template-columns: 1.5fr 2fr 1.5fr;
+  align-items: center;
+  padding: 15px 40px;
+  background: rgba(0, 0, 0, 0.95);
+  border-bottom: 2px solid var(--accent-purple);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.8);
+  z-index: 100;
+}
+
+.main-title {
+  font-family: var(--font-header);
+  font-size: 2.2rem !important;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0;
+  background: linear-gradient(to bottom, #fff 20%, var(--accent-purple) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 10px var(--accent-purple-glow));
+  animation: textGlow 4s infinite ease-in-out;
+}
+
+/* ---------------------------------------------------------
+   4. NAVIGATION & SIDEBAR
+--------------------------------------------------------- */
+.tab-navigation {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+}
+
+.tab-button {
+  font-family: var(--font-header);
+  background: transparent;
+  border: none;
+  color: var(--text-dim);
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  color: var(--accent-purple);
+  border-bottom: 2px solid var(--accent-purple);
+  text-shadow: 0 0 10px var(--accent-purple);
+}
+
+.sidebar-container {
+  flex: 0 0 260px;
+  background: rgba(8, 8, 8, 0.98);
+  border-right: 1px solid rgba(168, 85, 247, 0.15);
+  padding: 20px;
+  overflow-y: auto;
+}
+
+/* ---------------------------------------------------------
+   5. SPECIALIZED GENERATION BUTTONS
+   Targets: Summon Creature, Generate World, NPC
+--------------------------------------------------------- */
+/* Generic rule for those specific big action buttons */
+button:not(.tab-button):not(.logout-btn):not(.music-toggle) {
+  font-family: var(--font-header);
+  background: rgba(20, 20, 20, 0.9);
+  color: var(--accent-gold);
+  border: 1px solid var(--accent-purple);
+  padding: 15px 30px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+  animation: manaPulse 4s infinite ease-in-out; /* The Arcane Glow */
+}
+
+button:not(.tab-button):not(.logout-btn):not(.music-toggle):hover {
+  background: var(--accent-purple);
+  color: #000;
+  box-shadow: 0 0 30px var(--accent-purple);
+  transform: translateY(-3px);
+}
+
+/* ---------------------------------------------------------
+   6. VAULT & SAVE ACTIONS (Bolding Fix)
+--------------------------------------------------------- */
+.commit-to-vault,
+button[style*="gold"],
+.save-action-text {
+  font-weight: 800 !important; /* Forces bolding on faint text */
+  letter-spacing: 1.5px;
+  color: var(--accent-gold) !important;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+}
+
+/* ---------------------------------------------------------
+   7. UPDATED MUSIC TOGGLE (Themed)
+--------------------------------------------------------- */
+.music-toggle {
+  background: rgba(10, 10, 10, 0.8) !important;
+  border: 1px solid var(--accent-gold) !important; /* Gold border for contrast */
+  color: var(--accent-gold) !important;
+  font-family: var(--font-data) !important;
+  text-transform: uppercase;
+  font-size: 0.6rem !important;
+  padding: 8px 16px !important;
+  border-radius: 4px !important;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.music-toggle.active {
+  background: var(--accent-gold) !important;
+  color: #000 !important;
+  box-shadow: 0 0 15px var(--accent-gold-glow) !important;
+  border-color: #fff !important;
+}
+
+/* ---------------------------------------------------------
+   8. DICE GRID & CONTENT
+--------------------------------------------------------- */
+.dice-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.content-area {
+  flex: 1;
+  padding: 50px;
+  overflow-y: auto;
+  background: radial-gradient(circle at center, #111 0%, #050505 100%);
+}
+
+.module-viewer {
+  background: var(--panel-bg);
+  border: 1px solid #222;
+  padding: 40px;
+  border-radius: 4px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* ---------------------------------------------------------
+   9. UTILITIES
+--------------------------------------------------------- */
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 25px;
+}
+
+.logout-btn {
+  background: rgba(255, 68, 68, 0.05);
+  border: 1px solid #ff4444;
+  color: #ff4444;
+  padding: 6px 12px;
+  font-family: var(--font-data);
+  font-size: 0.6rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.logout-btn:hover {
+  background: #ff4444;
+  color: #fff;
+}
+
+/* ---------------------------------------------------------
+   10. FINAL POLISH (Added fixes for H2 and Spacing)
+--------------------------------------------------------- */
+
+/* Pretty Gold Module Titles */
+h2 {
+  font-family: var(--font-header);
+  color: var(--accent-gold);
+  text-transform: uppercase;
+  letter-spacing: 5px;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 30px;
+  background: linear-gradient(to bottom, #fff8e1 0%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px var(--accent-gold-glow));
+  border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+  padding-bottom: 15px;
+}
+
+/* Fix for squished data (RaceHuman / ClassFighter) */
+.data-label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--accent-purple);
+  font-size: 0.7rem;
+}
+
+.data-value {
+  display: block;
+  margin-bottom: 15px;
+}
